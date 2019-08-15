@@ -4,6 +4,7 @@ using System.Text;
 using BO;
 using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
+using Dapper;
 
 namespace DAL
 {
