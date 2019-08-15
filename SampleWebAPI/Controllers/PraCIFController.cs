@@ -40,6 +40,18 @@ namespace SampleWebAPI.Controllers
             return "value";
         }
 
+        [HttpGet("GetCountryWithCity")]
+        public IEnumerable<ViewCountryCity> GetCountryWithCity()
+        {
+            return _praCIF.GetAllCityWithCountry();
+        }
+
+        [HttpGet("GetCityWithCountry")]
+        public IEnumerable<SampleCity> GetCityWithCountry()
+        {
+            return _praCIF.GetCityWithCountry();
+        }
+
         // POST: api/PraCIF
         [HttpPost]
         public IActionResult Post([FromBody] PraCIF praCif)

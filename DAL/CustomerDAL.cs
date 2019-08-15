@@ -8,8 +8,6 @@ namespace DAL
 {
     public class CustomerDAL : ICustomer
     {
-       
-
         public void Delete(string id)
         {
             throw new NotImplementedException();

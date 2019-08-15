@@ -8,5 +8,7 @@ namespace DAL
     public interface IPraCIF:ICrud<PraCIF>
     {
         IEnumerable<PraCIF> GetByName(string name);
+        IEnumerable<ViewCountryCity> GetAllCityWithCountry();
+        IEnumerable<SampleCity> GetCityWithCountry();
     }
 }

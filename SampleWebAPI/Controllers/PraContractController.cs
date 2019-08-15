@@ -33,6 +33,8 @@ namespace SampleWebAPI.Controllers
             return "value";
         }
 
+       
+
         // POST: api/PraContract
         [HttpPost]
         public IActionResult Post([FromBody] PraContract praContract)
