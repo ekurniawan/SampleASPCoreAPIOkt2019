@@ -20,7 +20,22 @@ namespace DAL
         }
         public void Delete(string id)
         {
-            throw new NotImplementedException();
+            using(SqlConnection conn = new SqlConnection(GetConnString()))
+            {
+                string strSql = @"delete from PraCIF where ID=@ID";
+                SqlCommand cmd = new SqlCommand(strSql, conn);
+                cmd.Parameters.AddWithValue("@ID", id);
+
+                try
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                catch (SqlException sqlEx)
+                {
+                    throw new Exception($"Kesalahan: {sqlEx}");
+                }
+            }
         }
 
         public IEnumerable<PraCIF> GetAll()

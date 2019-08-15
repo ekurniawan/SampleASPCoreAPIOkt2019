@@ -72,8 +72,17 @@ namespace SampleWebAPI.Controllers
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(string id)
         {
+            try
+            {
+                _praCIF.Delete(id);
+                return Ok($"Data id:{id} berhasil dihapus");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
