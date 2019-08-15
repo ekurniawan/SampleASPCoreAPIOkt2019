@@ -5,11 +5,13 @@ VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleASPCore", "SampleASPCore\SampleASPCore.csproj", "{15B7793A-B6A6-415B-9869-7F6B96FFEC2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleWebAPI", "SampleWebAPI\SampleWebAPI.csproj", "{4DA0734C-3FB7-48E8-BE3B-9789110FD76A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleWebAPI", "SampleWebAPI\SampleWebAPI.csproj", "{4DA0734C-3FB7-48E8-BE3B-9789110FD76A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BO", "BO\BO.csproj", "{AACF77AF-2F6E-4FFB-812E-EC67DD8B762A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BO", "BO\BO.csproj", "{AACF77AF-2F6E-4FFB-812E-EC67DD8B762A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{F624818B-AFD3-47F9-B474-D2548E63EC7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{F624818B-AFD3-47F9-B474-D2548E63EC7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleASPIdentity", "SampleASPIdentity\SampleASPIdentity.csproj", "{DE6840DE-73E1-4D3C-9AFF-10B5B4ED95FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{F624818B-AFD3-47F9-B474-D2548E63EC7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F624818B-AFD3-47F9-B474-D2548E63EC7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F624818B-AFD3-47F9-B474-D2548E63EC7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE6840DE-73E1-4D3C-9AFF-10B5B4ED95FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE6840DE-73E1-4D3C-9AFF-10B5B4ED95FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE6840DE-73E1-4D3C-9AFF-10B5B4ED95FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE6840DE-73E1-4D3C-9AFF-10B5B4ED95FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
