@@ -33,10 +33,11 @@ namespace SampleWebAPI.Controllers
         }
 
         // GET: api/CIF/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("GetCifNo")]
+        public CIF GetCifNo(string cif_no)
         {
-            return "value";
+            //return $"{cif_no}";
+            return _cif.GetById(cif_no);
         }
 
         // POST: api/CIF

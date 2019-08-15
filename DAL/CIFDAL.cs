@@ -37,7 +37,13 @@ namespace DAL
 
         public CIF GetById(string id)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection(GetConnString()))
+            {
+                string strSql = @"select * from CIF where CIF_No=@CIF_No";
+                var param = new { CIF_No = id };
+                var result = conn.QuerySingleOrDefault<CIF>(strSql, param);
+                return result;
+            }
         }
 
         public void Insert(CIF obj)
