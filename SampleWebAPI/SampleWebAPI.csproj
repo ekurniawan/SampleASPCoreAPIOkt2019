@@ -6,13 +6,9 @@
 
   <ItemGroup>
     <Compile Remove="Models\**" />
-    <Compile Remove="wwwroot\**" />
     <Content Remove="Models\**" />
-    <Content Remove="wwwroot\**" />
     <EmbeddedResource Remove="Models\**" />
-    <EmbeddedResource Remove="wwwroot\**" />
     <None Remove="Models\**" />
-    <None Remove="wwwroot\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +20,10 @@
   <ItemGroup>
     <ProjectReference Include="..\BO\BO.csproj" />
     <ProjectReference Include="..\DAL\DAL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>
