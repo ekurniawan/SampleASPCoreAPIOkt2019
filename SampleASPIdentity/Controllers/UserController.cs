@@ -33,6 +33,12 @@ namespace SampleASPIdentity.Controllers
             }
         }
 
+        [HttpGet("GetRolesFromUser/{username}")]
+        public async Task<List<string>> GetRolesFromUser(string username)
+        {
+            return await _user.GetRolesFromUser(username);
+        }
+
         [HttpPost("createrole")]
         public async Task<IActionResult> CreateRole([FromBody]string roleName)
         {

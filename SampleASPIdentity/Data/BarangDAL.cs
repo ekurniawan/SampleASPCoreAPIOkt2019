@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using SampleASPIdentity.Models;
 
 namespace SampleASPIdentity.Data
@@ -9,44 +10,39 @@ namespace SampleASPIdentity.Data
     public class BarangDAL : IBarang
     {
         private ApplicationDbContext _db;
+
         public BarangDAL(ApplicationDbContext db)
         {
             _db = db;
+            
         }
 
-        public void Delete(string id)
+        public Task Delete(string id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Barang> GetAll()
+        public async Task<IEnumerable<Barang>> GetAll()
         {
             /*var results = from b in _db.Barang
                           orderby b.NamaBarang ascending
                           select b;*/
-            var results = _db.Barang.OrderBy(b => b.NamaBarang);
+            
+            var results = await _db.Barang.OrderBy(b => b.NamaBarang).ToListAsync();
             return results;
         }
 
-        public Barang GetById(string id)
+        public Task<Barang> GetById(string id)
         {
             throw new NotImplementedException();
         }
 
-        public void Insert(Barang obj)
+        public Task Insert(Barang obj)
         {
-            try
-            {
-                _db.Add(obj);
-                _db.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            throw new NotImplementedException();
         }
 
-        public void Update(Barang obj)
+        public Task Update(Barang obj)
         {
             throw new NotImplementedException();
         }

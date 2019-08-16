@@ -14,5 +14,8 @@ namespace SampleASPIdentity.Data
         Task CreateRole(string roleName);
         Task AddUserToRole(string username, string role);
         Task<bool> CheckUserInRole(string username, string rolename);
+
+        Task<bool> CekApiAuth(string username, string cname, string aname);
+        Task<List<string>> GetRolesFromUser(string username);
     }
 }

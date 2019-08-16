@@ -7,10 +7,10 @@ namespace SampleASPIdentity.Data
 {
     public interface ICrud<T>
     {
-        IEnumerable<T> GetAll();
-        T GetById(string id);
-        void Insert(T obj);
-        void Update(T obj);
-        void Delete(string id);
+        Task<IEnumerable<T>> GetAll();
+        Task<T> GetById(string id);
+        Task Insert(T obj);
+        Task Update(T obj);
+        Task Delete(string id);
     }
 }

@@ -10,6 +10,9 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using SampleASPIdentity.Helpers;
 using SampleASPIdentity.Models;
+using Dapper;
+using Microsoft.Extensions.Configuration;
+using System.Data.SqlClient;
 
 namespace SampleASPIdentity.Data
 {
@@ -18,14 +21,41 @@ namespace SampleASPIdentity.Data
         private AppSettings _appSettings;
         private UserManager<IdentityUser> _userManager;
         private RoleManager<IdentityRole> _roleManager;
-       
+        private IConfiguration _config;
 
-        public UserDAL(IOptions<AppSettings> appSettings,UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        public UserDAL(IOptions<AppSettings> appSettings,
+            UserManager<IdentityUser> userManager, 
+            RoleManager<IdentityRole> roleManager,
+            IConfiguration config)
         {
             _appSettings = appSettings.Value;
             _userManager = userManager;
             _roleManager = roleManager;
+            _config = config;
         }
+
+
+        private string GetConnStr()
+        {
+            return _config.GetConnectionString("KurniaConnection");
+        }
+
+        public async Task<bool> CekApiAuth(string username, string cname, string aname)
+        {
+            using(SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+                var role = await GetRolesFromUser(username);
+                var strSql = @"select Id from RoleDesc2 
+                where role=@role and CName=@CName and AName=@AName";
+                var param = new { role = role, CName = cname, AName = aname };
+                var result = await conn.QuerySingleOrDefaultAsync<RoleDesc2>(strSql, param);
+                if (result == null)
+                    return false;
+                else
+                    return true;
+            }
+        }
+
         public async Task AddUserToRole(string username, string role)
         {
             var user = await _userManager.FindByNameAsync(username);
@@ -99,6 +129,18 @@ namespace SampleASPIdentity.Data
             throw new NotImplementedException();
         }
 
+        public async Task<List<string>> GetRolesFromUser(string username)
+        {
+            List<string> listRoles = new List<string>();
+            var user = await _userManager.FindByEmailAsync(username);
+            var roles = await _userManager.GetRolesAsync(user);
+            foreach(var role in roles)
+            {
+                listRoles.Add(role);
+            }
+            return listRoles;
+        }
+
         public async Task Register(User usr)
         {
             var user = new IdentityUser { UserName = usr.Username, Email = usr.Username };
@@ -108,6 +150,6 @@ namespace SampleASPIdentity.Data
                 throw new Exception("Gagal menambah Pengguna ");
         }
 
-        
+      
     }
 }

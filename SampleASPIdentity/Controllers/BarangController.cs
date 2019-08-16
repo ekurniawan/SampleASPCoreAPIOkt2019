@@ -16,16 +16,25 @@ namespace SampleASPIdentity.Controllers
     public class BarangController : ControllerBase
     {
         private IBarang _barang;
-        public BarangController(IBarang barang)
+        private IUser _user;
+
+        public BarangController(IBarang barang,IUser user)
         {
             _barang = barang;
+            _user = user;
         }
 
         // GET: api/Barang
         [HttpGet]
-        public IEnumerable<Barang> Get()
+        public async Task<IActionResult> Get()
         {
-            return _barang.GetAll();
+            var cek = await _user.CekApiAuth(User.Identity.Name,
+                ControllerContext.ActionDescriptor.ControllerName,
+                ControllerContext.ActionDescriptor.ActionName);
+            if (cek)
+                return Ok(await _barang.GetAll());
+            else
+                return Unauthorized();
         }
 
         // GET: api/Barang/5
@@ -36,9 +45,16 @@ namespace SampleASPIdentity.Controllers
         }
 
         [HttpGet("GetUsername")]
-        public string GetUsername()
+        public async Task<IActionResult> GetUsername()
         {
-            return $"Username: {User.Identity.Name}";
+            var cek = await _user.CekApiAuth(User.Identity.Name,
+                ControllerContext.ActionDescriptor.ControllerName,
+                ControllerContext.ActionDescriptor.ActionName);
+            if (cek)
+                return Ok($"Username: {User.Identity.Name}");
+            else
+                return Unauthorized();
+
         }
 
         // POST: api/Barang
