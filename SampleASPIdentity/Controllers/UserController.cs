@@ -22,8 +22,15 @@ namespace SampleASPIdentity.Controllers
         [HttpPost("Register")]
         public async Task<IActionResult> Register([FromBody]User user)
         {
-            await _user.Register(user);
-            return Ok("Proses Registrasi Berhasil");
+            try
+            {
+                await _user.Register(user);
+                return Ok("Proses Registrasi Berhasil");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPost("createrole")]
