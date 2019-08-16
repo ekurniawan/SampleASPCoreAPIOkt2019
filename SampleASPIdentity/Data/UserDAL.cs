@@ -33,9 +33,14 @@ namespace SampleASPIdentity.Data
             throw new NotImplementedException();
         }
 
-        public Task CreateRole(string roleName)
+        public async Task CreateRole(string roleName)
         {
-            throw new NotImplementedException();
+            IdentityResult roleResult;
+            var roleExist = await _roleManager.RoleExistsAsync(roleName);
+            if (!roleExist)
+                roleResult = await _roleManager.CreateAsync(new IdentityRole(roleName));
+            else
+                throw new Exception($"Role {roleName} sudah ada");
         }
 
         public IEnumerable<User> GetAll()
@@ -47,8 +52,11 @@ namespace SampleASPIdentity.Data
         {
             var user = new IdentityUser { UserName = usr.Username, Email = usr.Username };
             var result = await _userManager.CreateAsync(user, usr.Password);
+            
             if (!result.Succeeded)
                 throw new Exception("Gagal menambah Pengguna ");
         }
+
+        
     }
 }

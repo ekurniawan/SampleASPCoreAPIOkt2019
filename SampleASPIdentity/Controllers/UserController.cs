@@ -26,5 +26,12 @@ namespace SampleASPIdentity.Controllers
             return Ok("Proses Registrasi Berhasil");
         }
 
+        [HttpPost("createrole")]
+        public async Task<IActionResult> CreateRole([FromBody]string roleName)
+        {
+            await _user.CreateRole(roleName);
+            return Ok($"Proses Pembuatan Role {roleName} berhasil");
+        }
+
     }
 }
