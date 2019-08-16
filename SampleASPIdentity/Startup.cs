@@ -29,6 +29,7 @@ namespace SampleASPIdentity
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IBarang, BarangDAL>();
+            services.AddTransient<IUser, UserDAL>();
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -50,6 +51,8 @@ namespace SampleASPIdentity
             {
                 app.UseHsts();
             }
+
+            app.UseAuthentication();
 
             app.UseHttpsRedirection();
             app.UseMvc();
