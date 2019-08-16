@@ -14,6 +14,9 @@ namespace SampleASPIdentity.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
+            //var namaController = ControllerContext.ActionDescriptor.ControllerName;
+            //var namaAction = ControllerContext.ActionDescriptor.ActionName;
+            //return new string[] { "value1", "value2",namaController,namaAction };
             return new string[] { "value1", "value2" };
         }
 

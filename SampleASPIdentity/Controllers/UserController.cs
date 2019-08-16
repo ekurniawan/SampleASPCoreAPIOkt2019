@@ -33,5 +33,23 @@ namespace SampleASPIdentity.Controllers
             return Ok($"Proses Pembuatan Role {roleName} berhasil");
         }
 
+        [HttpPost("authenticate")]
+        public async Task<IActionResult> Authenticate([FromBody]User userParam)
+        {
+            var user = await _user.Authenticate(userParam.Username, userParam.Password);
+
+            if (user == null)
+                return BadRequest(new { message = "Username or password is incorrect" });
+
+            return Ok(user);
+        }
+
+        [HttpPost("addusertorole")]
+        public async Task<IActionResult> AddUserToRole([FromBody] UserRole usrRole)
+        {
+            await _user.AddUserToRole(usrRole.username, usrRole.rolename);
+            return Ok();
+        }
+
     }
 }

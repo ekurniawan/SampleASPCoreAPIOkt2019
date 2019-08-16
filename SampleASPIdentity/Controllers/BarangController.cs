@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SampleASPIdentity.Data;
@@ -9,6 +10,7 @@ using SampleASPIdentity.Models;
 
 namespace SampleASPIdentity.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class BarangController : ControllerBase
@@ -31,6 +33,12 @@ namespace SampleASPIdentity.Controllers
         public string Get(int id)
         {
             return "value";
+        }
+
+        [HttpGet("GetUsername")]
+        public string GetUsername()
+        {
+            return $"Username: {User.Identity.Name}";
         }
 
         // POST: api/Barang
