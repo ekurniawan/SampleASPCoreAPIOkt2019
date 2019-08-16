@@ -1,26 +1,65 @@
-﻿
+﻿@model IEnumerable<SampleASPCore.Models.Barang>
+
 @{
-    Layout = null;
+    ViewData["Title"] = "Index";
 }
 
-<!DOCTYPE html>
+<h2>Table Barang</h2>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Hello World</title>
-    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-</head>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-sm-12"><h2>Hello World</h2></div>
-            <div class="col-md-6 col-sm-12"><h2>Kolom 2</h2></div>
-        </div>
-        
-    </div>
-
-    <link href="~/lib/jquery/dist/jquery.min.js" rel="stylesheet" />
-    <link href="~/lib/bootstrap/dist/js/bootstrap.min.js" rel="stylesheet" />
-</body>
-</html>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.KodeBarang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NamaBarang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jumlah)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HargaBeli)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HargaJual)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Deskripsi)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.KodeBarang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NamaBarang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Jumlah)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HargaBeli)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HargaJual)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Deskripsi)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
