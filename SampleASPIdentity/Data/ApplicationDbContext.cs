@@ -14,5 +14,6 @@ namespace SampleASPIdentity.Data
         {
         }
         public DbSet<Barang> Barang { get; set; }
+        public DbSet<stream> streams { get; set; }
     }
 }

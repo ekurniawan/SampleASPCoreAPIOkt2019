@@ -38,10 +38,11 @@ namespace SampleASPIdentity.Controllers
         }
 
         // GET: api/Barang/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{id}")]
+        public async Task<Barang> Get(int id)
         {
-            return "value";
+            var result = await _barang.GetById(id.ToString());
+            return result;
         }
 
         [HttpGet("GetUsername")]
