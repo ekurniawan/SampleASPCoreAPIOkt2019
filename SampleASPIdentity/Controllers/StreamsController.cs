@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SampleASPIdentity.Data;
 using SampleASPIdentity.Models;
@@ -18,6 +19,7 @@ namespace SampleASPIdentity.Controllers
             _stream = stream;
         }
         // GET: api/Streams
+        [Authorize]
         [HttpGet]
         public async Task<IEnumerable<stream>> Get()
         {
